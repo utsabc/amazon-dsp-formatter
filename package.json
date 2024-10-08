@@ -1,6 +1,6 @@
 {
   "name": "amazon-dsp-formatter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node.js module for formatting customer data according to Amazon Ads Audience requirements. This will be a comprehensive formatting tool that handles all the specified normalization rules.",
   "main": "index.js",
   "scripts": {
