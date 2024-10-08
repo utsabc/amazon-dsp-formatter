@@ -116,13 +116,13 @@ class AmazonAdsFormatter {
   formatAddress(address, country = "us") {
     if (!address) return "";
 
-    let formatted = address.toLowerCase();
+    let formatted = address.toLowerCase().trim();
 
     const countryCode =
       this.maps.countryMap[country.toLowerCase()] || country.toLowerCase();
-    const addressMap = this.maps.addressMappings[countryCode];
-
-    const defaultAddressmap = this.maps.addressMappings.default;
+    const addressMap =
+      this.maps.addressMappings[countryCode] ||
+      this.maps.addressMappings.default;
 
     // Apply special character mappings
     Object.entries(this.maps.specialCharacterMap).forEach(
@@ -161,14 +161,6 @@ class AmazonAdsFormatter {
 
     // Apply country-specific address mappings
     Object.entries(addressMap).forEach(([word, replacement]) => {
-      formatted = formatted.replace(
-        new RegExp(`\\b${word}\\b`, "g"),
-        replacement
-      );
-    });
-
-    // Apply default address mappings
-    Object.entries(defaultAddressmap).forEach(([word, replacement]) => {
       formatted = formatted.replace(
         new RegExp(`\\b${word}\\b`, "g"),
         replacement
@@ -253,18 +245,11 @@ class AmazonAdsFormatter {
       .toLowerCase()
       .replace(/[^a-z0-9]/g, "")
       .trim();
-
-    formatted = formatted.replace(/[^a-z0-9]/g, "").trim();
-    if (formatted.length > 5) {
-      // remove the last 4 characters
-      formatted = formatted.slice(0, 5);
-    }
-
+    formatted = formatted.substring(0, formatted.length - 4);
     return formatted;
   }
 
   formatRecord(record) {
-
     if (!record) return {};
 
     if (typeof record !== "object") {
