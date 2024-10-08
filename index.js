@@ -244,11 +244,6 @@ class AmazonAdsFormatter {
       .replace(/[^a-z0-9]/g, "")
       .trim().substring(0, postal.length - 4);
 
-    if (formatted.length > 5) {
-      // remove the last 4 characters
-      formatted = formatted.slice(0, 5);
-    }
-
     return formatted;
   }
 
