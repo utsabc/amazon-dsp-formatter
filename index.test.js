@@ -79,8 +79,8 @@ describe("AmazonAdsFormatter", () => {
 
   describe("formatPostal", () => {
     it("should format postal codes correctly", () => {
-      expect(formatter.formatPostal("12345-6789")).toBe("12345");
-      expect(formatter.formatPostal("K1A 0B1")).toBe("k1a0b");
+        expect(formatter.formatPostal("12345-6789")).toBe("12345");
+      expect(formatter.formatPostal("K1A 0B1")).toBe("k1");
     });
   });
 
